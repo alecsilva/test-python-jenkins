@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Test') { 
             steps {
-                sh '/home/ubuntu/.local/bin/pytest --junit-xml test-reports/results.xml sources/test_calc.py' 
+                sh 'python3 -m pytest --junit-xml test-reports/results.xml sources/test_calc.py' 
             }
             post {
                 always {
@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh "pyinstaller --onefile sources/add2vals.py"
+                sh "python3 -m pyinstaller --onefile sources/add2vals.py"
             }
             post {
                 success {
